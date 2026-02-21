@@ -1,0 +1,172 @@
+/* HomeScreen.module.css
+   Aesthetic: dark stage lighting — deep blacks, glowing violet accents,
+   warm amber for the streak stat. Feels like a concert venue app. */
+
+.screen {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-xl) var(--space-md);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Radial glow behind the content */
+.screen::before {
+  content: '';
+  position: fixed;
+  top: -20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(ellipse, rgba(253, 184, 22, 0.12) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+/* ── Header ── */
+.header {
+  text-align: center;
+  padding-bottom: var(--space-sm);
+}
+
+.dashboardLink {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  margin-bottom: var(--space-md);
+  letter-spacing: 0.03em;
+  transition: color var(--transition);
+}
+
+.dashboardLink:hover {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.appName {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-size: clamp(1.6rem, 6vw, 2.2rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+  margin: 0 0 var(--space-xs);
+  line-height: 1.1;
+}
+
+.appName span {
+  color: var(--color-primary);
+}
+
+.phaseLabel {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  background: var(--color-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: 100px;
+  padding: 3px 12px;
+  margin-top: var(--space-sm);
+}
+
+/* ── Stats row ── */
+.stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+}
+
+.stat {
+  background: var(--color-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md) var(--space-md);
+  text-align: center;
+}
+
+.statValue {
+  font-family: 'Georgia', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.statLabel {
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-top: 6px;
+}
+
+/* Amber tint for streak stat */
+.statStreak .statValue {
+  color: #f59e0b;
+}
+
+/* ── Buttons ── */
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+/* ── Skeleton loading ── */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--color-secondary) 25%,
+    var(--color-border) 50%,
+    var(--color-secondary) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+  border-radius: var(--radius-sm);
+}
+
+.skeletonValue {
+  height: 2rem;
+  width: 60%;
+  margin: 0 auto 6px;
+}
+
+.skeletonLabel {
+  height: 0.72rem;
+  width: 80%;
+  margin: 0 auto;
+}
+
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ── Loading spinner ── */
+.spinnerWrap {
+  display: flex;
+  justify-content: center;
+  padding: var(--space-md) 0;
+}

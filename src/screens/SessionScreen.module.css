@@ -1,0 +1,326 @@
+/* SessionScreen.module.css
+   Aesthetic: dark practice room — stark, focused, no distractions.
+   Large answer targets, dramatic feedback colors, clean progress rail. */
+
+/* ── Layout ───────────────────────────────────────────────────────────────── */
+
+.screen {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-surface);
+  padding: 0;
+}
+
+/* ── Top bar ─────────────────────────────────────────────────────────────── */
+
+.topBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-md) var(--space-lg);
+  border-bottom: 1px solid var(--color-border);
+  flex-shrink: 0;
+}
+
+.progressText {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.quitBtn {
+  background: none;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: color var(--transition), border-color var(--transition);
+}
+
+.quitBtn:hover {
+  color: var(--color-text);
+  border-color: var(--color-text-muted);
+}
+
+/* ── Progress rail ───────────────────────────────────────────────────────── */
+
+.progressRail {
+  height: 3px;
+  background: var(--color-border);
+  flex-shrink: 0;
+}
+
+.progressFill {
+  height: 100%;
+  background: var(--color-primary);
+  transition: width 0.4s ease;
+}
+
+/* ── Main content ────────────────────────────────────────────────────────── */
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-xl) var(--space-lg);
+  gap: var(--space-xl);
+  max-width: 480px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* ── Listen area ─────────────────────────────────────────────────────────── */
+
+.listenArea {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.listenLabel {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.fallbackQuestion {
+  font-family: 'Georgia', serif;
+  font-size: 1.15rem;
+  color: var(--color-text);
+  text-align: center;
+  margin: 0;
+  line-height: 1.5;
+  padding: var(--space-md) var(--space-lg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-secondary);
+}
+
+.playBtn {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  border: 2px solid var(--color-primary);
+  background: transparent;
+  color: var(--color-primary);
+  font-size: 1.6rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--transition), transform var(--transition);
+  position: relative;
+}
+
+.playBtn:hover {
+  background: rgba(253, 184, 22, 0.12);
+  transform: scale(1.05);
+}
+
+.playBtn:active {
+  transform: scale(0.97);
+}
+
+/* Pulse ring on playBtn */
+.playBtn::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid rgba(253, 184, 22, 0.3);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50%       { opacity: 0; transform: scale(1.25); }
+}
+
+/* ── Feedback message ────────────────────────────────────────────────────── */
+
+.feedbackMessage {
+  font-family: 'Georgia', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  min-height: 1.6rem;
+  text-align: center;
+  transition: color 0.2s ease;
+}
+
+.feedbackMessage.correct {
+  color: var(--color-correct);
+}
+
+.feedbackMessage.wrong {
+  color: var(--color-wrong);
+}
+
+/* ── Answer grid ─────────────────────────────────────────────────────────── */
+
+.answerGrid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  width: 100%;
+}
+
+.answerBtn {
+  width: 100%;
+  min-height: 56px;
+  padding: var(--space-md) var(--space-lg);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  background: var(--color-secondary);
+  color: var(--color-text);
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  text-align: center;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.1s ease,
+    opacity 0.2s ease;
+}
+
+.answerBtn:hover:not(:disabled) {
+  background: var(--color-secondary-hover);
+  border-color: var(--color-primary);
+  transform: translateY(-1px);
+}
+
+.answerBtn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.answerBtn:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.answerBtn.selected.correct {
+  background: rgba(52, 211, 153, 0.15);
+  border-color: var(--color-correct);
+  color: var(--color-correct);
+  opacity: 1;
+}
+
+.answerBtn.selected.wrong {
+  background: rgba(248, 113, 113, 0.15);
+  border-color: var(--color-wrong);
+  color: var(--color-wrong);
+  opacity: 1;
+}
+
+/* Highlight the correct answer when no retry is left */
+.answerBtn.revealCorrect {
+  background: rgba(52, 211, 153, 0.1);
+  border-color: var(--color-correct);
+  color: var(--color-correct);
+  opacity: 1;
+}
+
+/* ── Loading state ───────────────────────────────────────────────────────── */
+
+.loading {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-lg);
+  color: var(--color-text-muted);
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--color-border);
+  border-top-color: var(--color-primary);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loadingText {
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* ── Quit modal content ──────────────────────────────────────────────────── */
+
+.quitModalTitle {
+  font-family: 'Georgia', serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 0 0 var(--space-sm);
+}
+
+.quitModalBody {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  margin: 0 0 var(--space-xl);
+  line-height: 1.6;
+}
+
+.quitModalActions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+/* ── Responsive breakpoints ─────────────────────────────────────────────── */
+
+/* 768px+: 2-column answer grid */
+@media (min-width: 768px) {
+  .answerGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-sm);
+  }
+
+  .main {
+    max-width: 640px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .screen {
+    align-items: center;
+  }
+}
+
+/* 1024px+: wider layout */
+@media (min-width: 1024px) {
+  .main {
+    max-width: 760px;
+  }
+
+  .answerBtn {
+    min-height: 64px;
+    font-size: 1.05rem;
+  }
+}

@@ -1,0 +1,54 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  border: none;
+  border-radius: var(--radius-md, 12px);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.15s ease, transform 0.1s ease;
+  user-select: none;
+}
+
+.button:active {
+  transform: scale(0.97);
+}
+
+.primary {
+  background-color: var(--color-primary, #fdb816);
+  color: #000;
+}
+
+.primary:hover {
+  background-color: var(--color-primary-hover, #e0a010);
+}
+
+.secondary {
+  background-color: var(--color-secondary, #2a2a38);
+  color: var(--color-text, #f0f0f5);
+}
+
+.secondary:hover {
+  background-color: var(--color-secondary-hover, #3a3a4e);
+}
+
+.correct {
+  background-color: var(--color-correct, #34d399);
+  color: #000;
+}
+
+.correct:hover {
+  background-color: var(--color-correct-hover, #10b981);
+}
+
+.wrong {
+  background-color: var(--color-wrong, #f87171);
+  color: #fff;
+}
+
+.wrong:hover {
+  background-color: var(--color-wrong-hover, #ef4444);
+}

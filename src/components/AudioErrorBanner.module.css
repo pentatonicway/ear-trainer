@@ -1,0 +1,59 @@
+/* AudioErrorBanner.module.css
+   Amber warning banner — visible but not alarming. */
+
+.banner {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-md);
+  padding: var(--space-md) var(--space-lg);
+  background: rgba(245, 158, 11, 0.1);
+  border-bottom: 2px solid rgba(245, 158, 11, 0.35);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.icon {
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.body {
+  flex: 1;
+  min-width: 0;
+}
+
+.message {
+  font-size: 0.85rem;
+  color: #f59e0b;
+  font-weight: 600;
+  line-height: 1.4;
+  margin: 0 0 4px;
+}
+
+.sub {
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.retryBtn {
+  flex-shrink: 0;
+  padding: 6px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  background: rgba(245, 158, 11, 0.12);
+  color: #f59e0b;
+  font-size: 0.78rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background var(--transition);
+  white-space: nowrap;
+  align-self: center;
+}
+
+.retryBtn:hover {
+  background: rgba(245, 158, 11, 0.2);
+}

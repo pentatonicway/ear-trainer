@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="80" fill="#1a1a2e"/>
+  <circle cx="256" cy="256" r="160" fill="none" stroke="#e94560" stroke-width="20"/>
+  <!-- Musical note shape -->
+  <ellipse cx="210" cy="320" rx="40" ry="28" fill="#e94560"/>
+  <ellipse cx="330" cy="290" rx="40" ry="28" fill="#e94560"/>
+  <line x1="248" y1="320" x2="248" y2="170" stroke="#e94560" stroke-width="18" stroke-linecap="round"/>
+  <line x1="368" y1="290" x2="368" y2="140" stroke="#e94560" stroke-width="18" stroke-linecap="round"/>
+  <line x1="248" y1="170" x2="368" y2="140" stroke="#e94560" stroke-width="18" stroke-linecap="round"/>
+</svg>

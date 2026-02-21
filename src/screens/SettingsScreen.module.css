@@ -1,0 +1,328 @@
+/* SettingsScreen.module.css
+   Aesthetic: instrument panel / mixing board — structured rows, precise
+   toggles, crisp segment selectors. Utilitarian-refined, not generic. */
+
+.screen {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-surface);
+}
+
+/* ── Top bar ─────────────────────────────────────────────────────────────── */
+
+.topBar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md) var(--space-lg);
+  border-bottom: 1px solid var(--color-border);
+  flex-shrink: 0;
+}
+
+.backBtn {
+  background: none;
+  border: none;
+  color: var(--color-text-muted);
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: var(--radius-sm);
+  line-height: 1;
+  transition: color var(--transition);
+  display: flex;
+  align-items: center;
+}
+
+.backBtn:hover { color: var(--color-text); }
+
+.topTitle {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+/* ── Scroll body ─────────────────────────────────────────────────────────── */
+
+.body {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-xl) var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  max-width: 540px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ── Section group ───────────────────────────────────────────────────────── */
+
+.sectionLabel {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  padding: var(--space-lg) 0 var(--space-sm);
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: 0;
+}
+
+/* ── Setting row ─────────────────────────────────────────────────────────── */
+
+.row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-lg);
+  padding: var(--space-md) 0;
+  border-bottom: 1px solid rgba(46, 46, 64, 0.6);
+}
+
+.rowMeta {
+  flex: 1;
+  min-width: 0;
+}
+
+.rowLabel {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--color-text);
+  line-height: 1.3;
+}
+
+.rowDesc {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  margin-top: 2px;
+  line-height: 1.4;
+}
+
+.rowControl {
+  flex-shrink: 0;
+}
+
+/* ── Segment selector (pill tabs) ────────────────────────────────────────── */
+
+.segment {
+  display: flex;
+  background: var(--color-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  gap: 0;
+}
+
+.segBtn {
+  flex: 1;
+  min-height: 34px;
+  padding: 6px 12px;
+  border: none;
+  background: transparent;
+  color: var(--color-text-muted);
+  font-size: 0.78rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background var(--transition), color var(--transition);
+  position: relative;
+}
+
+.segBtn + .segBtn::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 20%;
+  height: 60%;
+  width: 1px;
+  background: var(--color-border);
+}
+
+.segBtn:hover:not(.segActive) {
+  background: var(--color-secondary-hover);
+  color: var(--color-text);
+}
+
+.segActive {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.segActive + .segBtn::before { display: none; }
+
+/* ── Toggle switch ───────────────────────────────────────────────────────── */
+
+.toggleTrack {
+  position: relative;
+  width: 44px;
+  height: 24px;
+  border-radius: 100px;
+  background: var(--color-border);
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  flex-shrink: 0;
+}
+
+.toggleTrack.on {
+  background: var(--color-primary);
+}
+
+.toggleThumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  transition: transform 0.2s ease;
+  pointer-events: none;
+}
+
+.toggleTrack.on .toggleThumb {
+  transform: translateX(20px);
+}
+
+/* ── Checkbox grid ───────────────────────────────────────────────────────── */
+
+.checkGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-sm);
+  padding: var(--space-md) 0;
+  width: 100%;
+}
+
+.checkItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 10px var(--space-md);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  background: var(--color-secondary);
+  cursor: pointer;
+  transition: border-color var(--transition), background var(--transition);
+  user-select: none;
+}
+
+.checkItem:hover:not(.checkDisabled) {
+  border-color: var(--color-primary);
+}
+
+.checkItem.checkChecked {
+  border-color: rgba(124,106,247,0.45);
+  background: rgba(124,106,247,0.08);
+}
+
+.checkItem.checkDisabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+/* visually hidden native checkbox — we render our own box */
+.checkNative {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.checkBox {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  border: 1.5px solid var(--color-border);
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: border-color var(--transition), background var(--transition);
+}
+
+.checkItem.checkChecked .checkBox {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.checkMark {
+  color: #fff;
+  font-size: 10px;
+  line-height: 1;
+  font-weight: 700;
+}
+
+.checkLabel {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--color-text);
+  line-height: 1.2;
+}
+
+/* ── Danger zone ─────────────────────────────────────────────────────────── */
+
+.dangerZone {
+  margin-top: var(--space-xl);
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--color-border);
+}
+
+.dangerLabel {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-wrong);
+  opacity: 0.65;
+  margin-bottom: var(--space-md);
+}
+
+.resetBtn {
+  width: 100%;
+  min-height: 48px;
+  padding: var(--space-md);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(248,113,113,0.3);
+  background: rgba(248,113,113,0.06);
+  color: var(--color-wrong);
+  font-size: 0.9rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition);
+}
+
+.resetBtn:hover {
+  background: rgba(248,113,113,0.12);
+  border-color: rgba(248,113,113,0.5);
+}
+
+/* ── Modal content ───────────────────────────────────────────────────────── */
+
+.modalTitle {
+  font-family: 'Georgia', serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 0 0 var(--space-sm);
+}
+
+.modalBody {
+  color: var(--color-text-muted);
+  font-size: 0.88rem;
+  line-height: 1.6;
+  margin: 0 0 var(--space-xl);
+}
+
+.modalActions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
